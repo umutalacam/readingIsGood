@@ -10,8 +10,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RestExceptionResponse {
     private int status;
+    private Timestamp timestamp;
     private String message;
     private List<String> errors;
     private String path;
-    private Timestamp timestamp;
 }

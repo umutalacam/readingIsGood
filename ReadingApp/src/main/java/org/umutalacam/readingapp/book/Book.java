@@ -8,10 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class Book {
     @Id
-    private int id;
+    private String bookId;
     private String title;
     private String author;
     private int pressYear;
     private int numPages;
     private int inStock;
+    private double price;
 }

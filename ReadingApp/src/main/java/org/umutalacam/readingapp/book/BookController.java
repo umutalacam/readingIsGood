@@ -1,10 +1,9 @@
 package org.umutalacam.readingapp.book;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.umutalacam.readingapp.book.exception.BookNotFoundException;
+import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.book.response.CreateBookResponse;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.List;
@@ -23,7 +22,18 @@ public class BookController {
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable int id) throws RestException {
-        throw new BookNotFoundException("Book does not exist.", "//");
+    public Book getBook(@PathVariable String id) throws RestException {
+        return this.bookService.getBookById(id);
+    }
+
+    @PostMapping("/book")
+    public ResponseEntity<CreateBookResponse> createBook(@RequestBody Book book) throws RestException {
+        String generatedBookId = bookService.createBook(book);
+
+        if (generatedBookId == null)
+            throw new RestException("Error", HttpStatus.BAD_GATEWAY, "/");
+
+        CreateBookResponse response = new CreateBookResponse(generatedBookId);
+        return ResponseEntity.ok(response);
     }
 }

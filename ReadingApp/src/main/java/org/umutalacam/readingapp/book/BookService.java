@@ -1,8 +1,10 @@
 package org.umutalacam.readingapp.book;
 
 import org.springframework.stereotype.Service;
+import org.umutalacam.readingapp.book.exception.BookNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -16,20 +18,41 @@ public class BookService {
         return this.bookRepository.findAll();
     }
 
-    public void addBook(Book book) {
+    public Book getBookById(String bookId) throws BookNotFoundException {
+        Optional<Book> optBook = this.bookRepository.findById(bookId);
+        if (optBook.isEmpty()) {
+            throw new BookNotFoundException("Book with the book id is not found.", null);
+        }
+        return optBook.get();
+    }
+
+    public String createBook(Book book) {
+        // validation
+        book = bookRepository.save(book);
+        return book.getBookId();
+    }
+
+    public void deleteBookById(Book book) {
+        String bookId = book.getBookId();
+        this.bookRepository.deleteById(bookId);
+    }
+
+    public void updateBook(Book book) throws BookNotFoundException {
+        Optional<Book> optBook = this.bookRepository.findById(book.getBookId());
+        if (optBook.isEmpty()) {
+            throw new BookNotFoundException("Book with the book id is not found.", null);
+        }
         // validation
         this.bookRepository.save(book);
     }
 
-    public void deleteBook(Book book) {
-        this.bookRepository.deleteById(book.getId());
+    public void addStockForBook(Book book, int amount) {
+        int oldStock = book.getInStock();
+        book.setInStock(oldStock + amount);
     }
 
-    public void addStockForBook(Book book) {
-
-    }
-
-    public void removeStockForBook(Book book) {
-
+    public void removeStockForBook(Book book, int amount) {
+        int currentInStock = book.getInStock();
+        book.setInStock(currentInStock - amount);
     }
 }
