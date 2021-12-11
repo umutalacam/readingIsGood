@@ -1,6 +1,7 @@
 package org.umutalacam.readingapp.book;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.umutalacam.readingapp.book.exception.BookNotFoundException;
 
 import java.util.List;
@@ -56,13 +57,17 @@ public class BookService {
         this.bookRepository.save(book);
     }
 
+    @Transactional
     public synchronized void addStockForBook(Book book, int amount) {
         int oldStock = book.getInStock();
         book.setInStock(oldStock + amount);
+        this.bookRepository.save(book);
     }
 
+    @Transactional
     public synchronized void removeStockForBook(Book book, int amount) {
         int currentInStock = book.getInStock();
         book.setInStock(currentInStock - amount);
+        this.bookRepository.save(book);
     }
 }

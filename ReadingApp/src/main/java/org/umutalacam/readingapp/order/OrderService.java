@@ -55,7 +55,7 @@ public class OrderService {
 
                 // Check stock status
                 int booksInStock = orderedBook.getInStock();
-                if (bo.getAmount() < booksInStock) {
+                if (bo.getAmount() > booksInStock) {
                     throw new OutOfStockException();
                 }
 

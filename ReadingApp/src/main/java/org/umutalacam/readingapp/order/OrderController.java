@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.umutalacam.readingapp.system.exception.RestException;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class OrderController {
         // Build response
         HashMap<String, Object> responseBody = new HashMap<>();
         responseBody.put("message", "Order created successfully");
-        responseBody.put("order", createdOrder);
+        responseBody.put("orderId", createdOrder.getOrderId());
         return ResponseEntity.ok(responseBody);
     }
 }
