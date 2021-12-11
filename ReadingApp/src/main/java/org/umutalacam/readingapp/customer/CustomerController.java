@@ -35,5 +35,15 @@ public class CustomerController {
         return ResponseEntity.ok(savedCustomerResponse);
     }
 
+    @PutMapping("/customer/{username}")
+    public ResponseEntity<?> updateCustomer(@PathVariable String username, @RequestBody Customer customer) throws RestException {
+        Customer updatedCustomer = this.customerService.updateCustomer(username, customer);
+        // Build response
+        HashMap<String, Object> updatedCustomerResponse = new HashMap<>();
+        updatedCustomerResponse.put("message", "Customer updated successfully.");
+        updatedCustomerResponse.put("customer", updatedCustomer);
+        return ResponseEntity.ok(updatedCustomerResponse);
+    }
+
 
 }
