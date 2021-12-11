@@ -2,6 +2,7 @@ package org.umutalacam.readingapp.customer;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Customer customer) {
+    public ResponseEntity<?> register(@RequestBody Customer customer) throws RestException {
         Customer savedCustomer = this.customerService.createCustomer(customer);
         // Build response
         HashMap<String, Object> savedCustomerResponse = new HashMap<>();

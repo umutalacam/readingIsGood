@@ -1,12 +1,13 @@
 package org.umutalacam.readingapp.customer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.exception.CustomerNotFoundException;
+import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -41,9 +42,20 @@ public class CustomerService {
         return customer.get();
     }
 
-    public Customer createCustomer(Customer customer) {
-        // Todo validation
-        return this.customerRepository.save(customer);
+    public Customer createCustomer(Customer customer) throws RestException {
+        CustomerValidationUtil.getInstance().validateCustomer(customer);
+        try {
+            return this.customerRepository.save(customer);
+        } catch (DuplicateKeyException exception) {
+            String message = exception.getMessage();
+            if (message != null) {
+                if (message.contains("username"))
+                    throw new DuplicateRecordException("Username already exists.");
+                else if (message.contains("email"))
+                    throw new DuplicateRecordException("Email already exists.");
+            }
+            throw new DuplicateRecordException("Duplicate records.");
+        }
     }
 
     public Customer updateCustomer(String username, Customer customer) throws RestException {
