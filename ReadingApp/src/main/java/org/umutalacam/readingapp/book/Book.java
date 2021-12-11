@@ -11,8 +11,8 @@ public class Book {
     private String bookId;
     private String title;
     private String author;
-    private int pressYear;
-    private int numPages;
-    private int inStock;
-    private double price;
+    private Integer pressYear;
+    private Integer numPages;
+    private Integer inStock;
+    private Double price;
 }

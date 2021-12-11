@@ -42,7 +42,17 @@ public class BookService {
         if (optBook.isEmpty()) {
             throw new BookNotFoundException("Book with the book id is not found.", null);
         }
-        // validation
+        // todo: validation
+        Book oldBook = optBook.get();
+
+        // If not set, use old value
+        if (book.getTitle() == null) book.setTitle(oldBook.getTitle());
+        if (book.getAuthor() == null) book.setAuthor(oldBook.getAuthor());
+        if (book.getPressYear() == null) book.setPressYear(oldBook.getPressYear());
+        if (book.getNumPages() == null) book.setNumPages(oldBook.getNumPages());
+        if (book.getInStock() == null) book.setInStock(oldBook.getInStock());
+        if (book.getPrice() == null) book.setPrice(oldBook.getPrice());
+
         this.bookRepository.save(book);
     }
 

@@ -39,7 +39,7 @@ public class BookCollectionTest {
         book2.setInStock(76);
         book2.setNumPages(20);
         book2.setPressYear(1991);
-        book2.setPrice(2);
+        book2.setPrice(2.0);
 
         String id = bookService.createBook(book);
         insertedBooks.add(book);
