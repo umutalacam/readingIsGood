@@ -6,11 +6,13 @@ import org.umutalacam.readingapp.book.BookService;
 import org.umutalacam.readingapp.customer.Customer;
 import org.umutalacam.readingapp.customer.CustomerService;
 import org.umutalacam.readingapp.order.exception.InvalidOrderException;
+import org.umutalacam.readingapp.order.exception.OrderNotFoundException;
 import org.umutalacam.readingapp.order.exception.OutOfStockException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -29,6 +31,14 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         return this.orderRepository.findAll();
+    }
+
+    public Order getOrderByOrderId(String orderId) throws RestException {
+        Optional<Order> optOrder =  this.orderRepository.findById(orderId);
+        if (optOrder.isEmpty()) {
+            throw new OrderNotFoundException();
+        }
+        return optOrder.get();
     }
 
     public Order createOrder(Order order) throws RestException {

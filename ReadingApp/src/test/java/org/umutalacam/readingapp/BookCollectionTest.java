@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.umutalacam.readingapp.book.Book;
 import org.umutalacam.readingapp.book.BookService;
+import org.umutalacam.readingapp.book.exception.BookValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class BookCollectionTest {
     private List<Book> insertedBooks = new ArrayList<>();
 
     @Test
-    public void createBooksTest() {
+    public void createBooksTest() throws BookValidationException {
         Book book = new Book();
         book.setTitle("Hackers: Heroes of the computer revolution.");
         book.setAuthor("Steven Levy");

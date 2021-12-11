@@ -1,10 +1,7 @@
 package org.umutalacam.readingapp.order;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.HashMap;
@@ -21,6 +18,11 @@ public class OrderController {
     @GetMapping("/order")
     public List<Order> getOrders() {
         return orderService.getAllOrders();
+    }
+
+    @GetMapping("/order/{orderId}")
+    public Order getOrder(@PathVariable String orderId) throws RestException {
+        return this.orderService.getOrderByOrderId(orderId);
     }
 
     @PostMapping("/order")

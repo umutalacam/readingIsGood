@@ -3,6 +3,7 @@ package org.umutalacam.readingapp.book;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.umutalacam.readingapp.book.exception.BookNotFoundException;
+import org.umutalacam.readingapp.book.exception.BookValidationException;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +28,9 @@ public class BookService {
         return optBook.get();
     }
 
-    public String createBook(Book book) {
-        // validation
+    public String createBook(Book book) throws BookValidationException {
+        // Validate the book data
+        BookValidationUtil.getInstance().validateBook(book);
         book = bookRepository.save(book);
         return book.getBookId();
     }
@@ -43,7 +45,6 @@ public class BookService {
         if (optBook.isEmpty()) {
             throw new BookNotFoundException("Book with the book id is not found.", null);
         }
-        // todo: validation
         Book oldBook = optBook.get();
 
         // If not set, use old value
