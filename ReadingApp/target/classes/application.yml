@@ -1,0 +1,10 @@
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: reading
+      database: reading_db
+      port: 27017
+      host: localhost
