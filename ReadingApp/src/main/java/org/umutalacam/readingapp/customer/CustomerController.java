@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;

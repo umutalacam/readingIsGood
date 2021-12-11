@@ -2,8 +2,8 @@ package org.umutalacam.readingapp.order;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.umutalacam.readingapp.book.Book;
 import org.umutalacam.readingapp.customer.Customer;
 
 import java.util.List;
@@ -12,7 +12,14 @@ import java.util.List;
 @Document("order")
 public class Order {
     @Id
-    private int order_id;
+    private String orderId;
+    private OrderStatus status;
+    @DBRef
     private Customer customer;
-    private List<Book> books;
+    private List<BookOrder> items;
+    private double totalPrice;
+
+    public Order() {
+        status = OrderStatus.PENDING;
+    }
 }

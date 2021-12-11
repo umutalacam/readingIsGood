@@ -56,12 +56,12 @@ public class BookService {
         this.bookRepository.save(book);
     }
 
-    public void addStockForBook(Book book, int amount) {
+    public synchronized void addStockForBook(Book book, int amount) {
         int oldStock = book.getInStock();
         book.setInStock(oldStock + amount);
     }
 
-    public void removeStockForBook(Book book, int amount) {
+    public synchronized void removeStockForBook(Book book, int amount) {
         int currentInStock = book.getInStock();
         book.setInStock(currentInStock - amount);
     }
