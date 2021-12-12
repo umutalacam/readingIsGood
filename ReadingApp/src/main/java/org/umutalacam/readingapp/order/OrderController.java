@@ -1,9 +1,9 @@
 package org.umutalacam.readingapp.order;
 
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.order.request.GetOrdersRequest;
 import org.umutalacam.readingapp.system.exception.RestException;
 import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
@@ -20,26 +20,22 @@ public class OrderController {
     @GetMapping("/order")
     public PaginatedResponse<Order> getOrders(@RequestParam(defaultValue = "0") int p,
                                               @RequestParam(defaultValue = "5") int pageSize,
-                                              @RequestParam(required = false) String status) throws RestException {
-        Page<Order> orderPage = null;
-        if (status == null) {
-            // get orders with page
-            orderPage = this.orderService.getOrdersPage(p, pageSize);
+                                              @RequestBody GetOrdersRequest request) throws RestException {
+        if (request.getPageSize() == null) {
+            request.setPageSize(pageSize);
         }
-        else {
-            // get orders with status and page
-            try {
-                OrderStatus orderStatus = OrderStatus.valueOf(status);
-                orderPage = this.orderService.getOrdersPageByStatus(orderStatus, p, pageSize);
-            } catch (IllegalArgumentException ex) {
-                throw new RestException("Invalid argument for status.", HttpStatus.BAD_REQUEST, "/order");
-            }
+
+        if (request.getPageIndex() == null) {
+            request.setPageIndex(p);
         }
+
+        // Use get orders request object
+        Page<Order> orderPage = this.orderService.getOrdersPage(request);
 
         // Build response
         PaginatedResponse<Order> response = new PaginatedResponse<>();
-        response.setCurrentPage(p);
-        response.setPageSize(pageSize);
+        response.setCurrentPage(request.getPageIndex());
+        response.setPageSize(request.getPageSize());
         response.setTotalPages(orderPage.getTotalPages());
         response.setTotalRecords(orderPage.getTotalElements());
         response.setRecords(orderPage.getContent());

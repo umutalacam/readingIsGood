@@ -2,6 +2,7 @@ package org.umutalacam.readingapp.system.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 

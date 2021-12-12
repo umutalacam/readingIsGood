@@ -2,6 +2,7 @@ package org.umutalacam.readingapp.order;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.book.Book;
 import org.umutalacam.readingapp.book.BookService;
@@ -10,9 +11,12 @@ import org.umutalacam.readingapp.customer.CustomerService;
 import org.umutalacam.readingapp.order.exception.InvalidOrderException;
 import org.umutalacam.readingapp.order.exception.OrderNotFoundException;
 import org.umutalacam.readingapp.order.exception.OutOfStockException;
+import org.umutalacam.readingapp.order.request.GetOrdersRequest;
 import org.umutalacam.readingapp.system.exception.RestException;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,13 +45,36 @@ public class OrderService {
     }
 
     /**
-     * Returns a page of orders
-     * @param pageIndex Page index
-     * @param pageSize elements will be shown in page
-     * @return Page of orders
+     * Returns the orders page with the defined criteria in request
+     * @param request request
+     * @return page of orders
      */
-    public Page<Order> getOrdersPage(int pageIndex, int pageSize) {
-        return this.orderRepository.findAll(PageRequest.of(pageIndex, pageSize));
+    public Page<Order> getOrdersPage(GetOrdersRequest request) throws RestException {
+        PageRequest pageRequest = PageRequest.of(request.getPageIndex(), request.getPageSize());
+        int pageIndex = request.getPageIndex();
+        int pageSize = request.getPageSize();
+        Date startDate;
+        Date endDate;
+
+        try {
+            startDate = request.getStartDate();
+            endDate = request.getEndDate();
+        } catch (ParseException exception) {
+            throw new RestException("Date fields are malformed. Allowed format: dd-MM-yyyy", HttpStatus.BAD_REQUEST, null);
+        }
+
+        if (startDate == null && endDate == null) {
+            return this.orderRepository.findAll(PageRequest.of(pageIndex, pageSize));
+        }
+        else {
+            if (startDate == null) {
+                startDate = new Date(0);
+            }
+            if (endDate == null) {
+                endDate = new Date(Long.MAX_VALUE);
+            }
+            return this.orderRepository.findAllByOrderTimeBetween(startDate, endDate, pageRequest);
+        }
     }
 
     public Page<Order> getOrdersPageByStatus(OrderStatus status, int pageIndex, int pageSize) {
