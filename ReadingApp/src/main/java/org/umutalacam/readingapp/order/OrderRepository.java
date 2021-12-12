@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.umutalacam.readingapp.customer.Customer;
 
 import java.util.Date;
+import java.util.List;
 
 public interface OrderRepository extends MongoRepository<Order, String> {
     Page<Order> findAllByStatus(OrderStatus status, PageRequest pageRequest);
@@ -13,4 +14,5 @@ public interface OrderRepository extends MongoRepository<Order, String> {
     Page<Order> findAllByCustomerAndStatus(Customer customer, OrderStatus status, PageRequest pageRequest);
 
     Page<Order> findAllByOrderTimeBetween(Date orderTime, Date orderTime2, PageRequest pageRequest);
+    List<Order> findAllByOrderTimeGreaterThan(Date orderTime);
 }
