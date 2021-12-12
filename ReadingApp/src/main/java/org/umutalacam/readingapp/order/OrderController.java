@@ -56,4 +56,18 @@ public class OrderController {
         responseBody.put("orderId", createdOrder.getOrderId());
         return ResponseEntity.ok(responseBody);
     }
+
+    @GetMapping("/customer/orders")
+    public PaginatedResponse<Order> getCustomerOrders(@RequestParam(defaultValue = "0") int p,
+                                                      @RequestParam(defaultValue = "5") int pageSize,
+                                                      @RequestParam() String customer) throws RestException {
+        Page<Order> orderPage =  this.orderService.getOrdersPageByCustomer(customer, p, pageSize);
+        PaginatedResponse<Order> orderPaginatedResponse = new PaginatedResponse<>();
+        orderPaginatedResponse.setCurrentPage(p);
+        orderPaginatedResponse.setTotalPages(orderPage.getTotalPages());
+        orderPaginatedResponse.setPageSize(pageSize);
+        orderPaginatedResponse.setTotalRecords(orderPage.getTotalElements());
+        orderPaginatedResponse.setRecords(orderPage.getContent());
+        return orderPaginatedResponse;
+    }
 }

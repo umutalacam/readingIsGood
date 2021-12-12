@@ -50,6 +50,7 @@ public class OrderService {
      * @return page of orders
      */
     public Page<Order> getOrdersPage(GetOrdersRequest request) throws RestException {
+        //TODO validation
         PageRequest pageRequest = PageRequest.of(request.getPageIndex(), request.getPageSize());
         int pageIndex = request.getPageIndex();
         int pageSize = request.getPageSize();
@@ -79,6 +80,11 @@ public class OrderService {
 
     public Page<Order> getOrdersPageByStatus(OrderStatus status, int pageIndex, int pageSize) {
         return this.orderRepository.findAllByStatus(status, PageRequest.of(pageIndex, pageSize));
+    }
+
+    public Page<Order> getOrdersPageByCustomer(String username, int pageIndex, int pageSize) throws RestException {
+        Customer customer = this.customerService.getCustomerByUsername(username);
+        return this.orderRepository.findAllByCustomer(customer, PageRequest.of(pageIndex, pageSize));
     }
 
     public Order getOrderByOrderId(String orderId) throws RestException {
