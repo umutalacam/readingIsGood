@@ -10,6 +10,7 @@ import org.umutalacam.readingapp.order.exception.OrderNotFoundException;
 import org.umutalacam.readingapp.order.exception.OutOfStockException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -95,6 +96,7 @@ public class OrderService {
 
         order.setTotalPrice(totalPrice);
         order.setItems(bookOrders);
+        order.setOrderTime(new Timestamp(System.currentTimeMillis()));
         return this.orderRepository.save(order);
     }
 

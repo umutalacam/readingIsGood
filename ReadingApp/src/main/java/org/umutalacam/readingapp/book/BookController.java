@@ -1,13 +1,13 @@
 package org.umutalacam.readingapp.book;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.umutalacam.readingapp.book.response.CreateBookResponse;
 import org.umutalacam.readingapp.system.exception.RestException;
+import org.umutalacam.readingapp.system.response.PaginatedResponse;
 import org.umutalacam.readingapp.system.response.RestResponse;
-
-import java.util.List;
 
 @RestController
 public class BookController {
@@ -18,8 +18,17 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public List<Book> getAllBooks() {
-        return this.bookService.getAllBooks();
+    public PaginatedResponse<Book> getAllBooks(@RequestParam int p,
+                                               @RequestParam(defaultValue = "5", required = false) int pageSize) {
+
+        Page<Book> bookPage =  this.bookService.getBookPage(p, pageSize);
+        PaginatedResponse<Book> response = new PaginatedResponse<>();
+        response.setCurrentPage(bookPage.getNumber());
+        response.setPageSize(bookPage.getSize());
+        response.setTotalRecords(bookPage.getNumberOfElements());
+        response.setRecords(bookPage.getContent());
+        response.setTotalPages(bookPage.getTotalPages());
+        return response;
     }
 
     @GetMapping("/book/{id}")

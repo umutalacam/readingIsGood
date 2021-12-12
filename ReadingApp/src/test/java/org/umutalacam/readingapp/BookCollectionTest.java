@@ -3,17 +3,24 @@ package org.umutalacam.readingapp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.umutalacam.readingapp.book.Book;
+import org.umutalacam.readingapp.book.BookRepository;
 import org.umutalacam.readingapp.book.BookService;
 import org.umutalacam.readingapp.book.exception.BookValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @SpringBootTest
 public class BookCollectionTest {
     @Autowired
     private BookService bookService;
+    @Autowired
+    private BookRepository bookRepository;
+
     private List<Book> insertedBooks = new ArrayList<>();
 
     @Test
@@ -62,6 +69,12 @@ public class BookCollectionTest {
         for (Book b : insertedBooks) {
             bookService.deleteBookById(b);
         }
+    }
+
+    @Test
+    public void getBooksPaginated() {
+        Page<Book> books = bookRepository.findAll(PageRequest.of(1, 4));
+        books.forEach(book -> System.out.println(book.toString()));
     }
 
 

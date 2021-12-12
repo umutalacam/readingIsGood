@@ -1,5 +1,7 @@
 package org.umutalacam.readingapp.book;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.umutalacam.readingapp.book.exception.BookNotFoundException;
@@ -18,6 +20,10 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         return this.bookRepository.findAll();
+    }
+
+    public Page<Book> getBookPage(int pageIndex, int pageSize) {
+        return this.bookRepository.findAll(PageRequest.of(pageIndex, pageSize));
     }
 
     public Book getBookById(String bookId) throws BookNotFoundException {
