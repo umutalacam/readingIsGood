@@ -15,6 +15,11 @@ public class RestException extends Exception {
         this.timestamp = Timestamp.from(Instant.now());
     }
 
+    public RestException(String message, HttpStatus status) {
+        super(message);
+        this.status = status;
+    }
+
     public RestException(String message, HttpStatus status, String path) {
         super(message);
         this.status = status;
