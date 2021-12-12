@@ -2,7 +2,6 @@ package org.umutalacam.readingapp.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.exception.CustomerNotFoundException;
 import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
@@ -42,6 +41,12 @@ public class CustomerService {
         return customer.get();
     }
 
+    /**
+     * Valdiates the customer data and creates customer on the db.
+     * @param customer Customer object that will be saved
+     * @return Saved customer object, including insertion ID.
+     * @throws RestException
+     */
     public Customer createCustomer(Customer customer) throws RestException {
         CustomerValidationUtil.getInstance().validateCustomer(customer);
         try {
@@ -58,6 +63,13 @@ public class CustomerService {
         }
     }
 
+    /**
+     * Update customer object by username
+     * @param username oldUsername
+     * @param customer The customer object that has updated fields.
+     * @return Updated customer
+     * @throws RestException
+     */
     public Customer updateCustomer(String username, Customer customer) throws RestException {
         // Check if customer exists
         Optional<Customer> optCustomer = this.customerRepository.findCustomerByUsername(username);

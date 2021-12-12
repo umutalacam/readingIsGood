@@ -2,7 +2,6 @@ package org.umutalacam.readingapp.customer;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.HashMap;

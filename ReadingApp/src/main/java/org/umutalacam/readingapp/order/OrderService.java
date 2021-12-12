@@ -29,8 +29,16 @@ public class OrderService {
         this.bookService = bookService;
     }
 
-    public List<Order> getAllOrders() {
+    public List<Order> getOrders() {
         return this.orderRepository.findAll();
+    }
+
+    public List<Order> getOrders(String username) {
+        return this.orderRepository.findOrdersByCustomer_Username(username);
+    }
+
+    public List<Order> getOrders(String username, OrderStatus status) {
+        return this.orderRepository.findOrdersByCustomer_UsernameAndStatus(username, status);
     }
 
     public Order getOrderByOrderId(String orderId) throws RestException {
@@ -51,6 +59,7 @@ public class OrderService {
         order.setCustomer(refCustomer);
 
         List<BookOrder> bookOrders = new ArrayList<>();
+        double totalPrice = 0;
 
         // fetch book information for ensuring book data integrity
         for (BookOrder bo: order.getItems()) {
@@ -72,6 +81,9 @@ public class OrderService {
                 // Reduce the books from stock
                 this.bookService.removeStockForBook(orderedBook, bo.getAmount());
 
+                // Add to order cost
+                totalPrice += Math.abs(orderedBook.getPrice()) * bo.getAmount();
+
                 // Set book orders for saving order embedded
                 orderedBook.setInStock(null);
                 BookOrder completeOrder = new BookOrder();
@@ -81,6 +93,7 @@ public class OrderService {
             }
         }
 
+        order.setTotalPrice(totalPrice);
         order.setItems(bookOrders);
         return this.orderRepository.save(order);
     }

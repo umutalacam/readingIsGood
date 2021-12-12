@@ -1,5 +1,6 @@
 package org.umutalacam.readingapp.order;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.umutalacam.readingapp.system.exception.RestException;
@@ -16,8 +17,8 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public List<Order> getOrders() {
-        return orderService.getAllOrders();
+    public List<Order> getOrders(@Param("username") String username, @Param("username") OrderStatus status) {
+        return orderService.getOrders();
     }
 
     @GetMapping("/order/{orderId}")
