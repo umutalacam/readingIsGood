@@ -1,12 +1,13 @@
 package org.umutalacam.readingapp.order;
 
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.umutalacam.readingapp.system.exception.RestException;
+import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 public class OrderController {
@@ -17,8 +18,32 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public List<Order> getOrders(@Param("username") String username, @Param("username") OrderStatus status) {
-        return orderService.getOrders();
+    public PaginatedResponse<Order> getOrders(@RequestParam(defaultValue = "0") int p,
+                                              @RequestParam(defaultValue = "5") int pageSize,
+                                              @RequestParam(required = false) String status) throws RestException {
+        Page<Order> orderPage = null;
+        if (status == null) {
+            // get orders with page
+            orderPage = this.orderService.getOrdersPage(p, pageSize);
+        }
+        else {
+            // get orders with status and page
+            try {
+                OrderStatus orderStatus = OrderStatus.valueOf(status);
+                orderPage = this.orderService.getOrdersPageByStatus(orderStatus, p, pageSize);
+            } catch (IllegalArgumentException ex) {
+                throw new RestException("Invalid argument for status.", HttpStatus.BAD_REQUEST, "/order");
+            }
+        }
+
+        // Build response
+        PaginatedResponse<Order> response = new PaginatedResponse<>();
+        response.setCurrentPage(p);
+        response.setPageSize(pageSize);
+        response.setTotalPages(orderPage.getTotalPages());
+        response.setTotalRecords(orderPage.getTotalElements());
+        response.setRecords(orderPage.getContent());
+        return response;
     }
 
     @GetMapping("/order/{orderId}")

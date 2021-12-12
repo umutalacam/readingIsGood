@@ -1,5 +1,7 @@
 package org.umutalacam.readingapp.order;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.book.Book;
 import org.umutalacam.readingapp.book.BookService;
@@ -30,16 +32,26 @@ public class OrderService {
         this.bookService = bookService;
     }
 
+    /**
+     * Returns all orders in the database
+     * @return List of orders
+     */
     public List<Order> getOrders() {
         return this.orderRepository.findAll();
     }
 
-    public List<Order> getOrders(String username) {
-        return this.orderRepository.findOrdersByCustomer_Username(username);
+    /**
+     * Returns a page of orders
+     * @param pageIndex Page index
+     * @param pageSize elements will be shown in page
+     * @return Page of orders
+     */
+    public Page<Order> getOrdersPage(int pageIndex, int pageSize) {
+        return this.orderRepository.findAll(PageRequest.of(pageIndex, pageSize));
     }
 
-    public List<Order> getOrders(String username, OrderStatus status) {
-        return this.orderRepository.findOrdersByCustomer_UsernameAndStatus(username, status);
+    public Page<Order> getOrdersPageByStatus(OrderStatus status, int pageIndex, int pageSize) {
+        return this.orderRepository.findAllByStatus(status, PageRequest.of(pageIndex, pageSize));
     }
 
     public Order getOrderByOrderId(String orderId) throws RestException {

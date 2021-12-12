@@ -11,6 +11,6 @@ public class PaginatedResponse<T> {
     private int currentPage;
     private int totalPages;
     private int pageSize;
-    private int totalRecords;
+    private long totalRecords;
     private List<T> records;
 }
