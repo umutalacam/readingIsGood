@@ -2,6 +2,9 @@ package org.umutalacam.readingapp.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.exception.CustomerNotFoundException;
 import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
@@ -25,6 +28,20 @@ public class CustomerService {
      */
     public List<Customer> getAllCustomers() {
         return this.customerRepository.findAll();
+    }
+
+    /**
+     * Returns a page of customers
+     * @param pageIndex page number
+     * @param pageSize number of elements in a page
+     * @return Page of customers
+     */
+    public Page<Customer> getCustomerPage(int pageIndex, int pageSize) throws RestException {
+        if (pageIndex < 0)
+            throw new RestException("Page index can't be smaller than 0.", HttpStatus.BAD_REQUEST, null);
+        if (pageSize <= 0)
+            throw new RestException("Page size can't be smaller than 1", HttpStatus.BAD_REQUEST, null);
+        return this.customerRepository.findAll(PageRequest.of(pageIndex, pageSize));
     }
 
     /**
@@ -88,17 +105,5 @@ public class CustomerService {
 
         return this.customerRepository.save(customer);
     }
-
-    private Customer aggregateCustomers(Customer c1, Customer c2) {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> newCustomerMap = mapper.convertValue(c2, Map.class);
-        Map<String, Object> oldCustomerMap = mapper.convertValue(c1, Map.class);
-
-        for (String key : newCustomerMap.keySet()) {
-            if (oldCustomerMap.containsKey(key)) {
-                oldCustomerMap.put(key, newCustomerMap.get(key));
-            }
-        }
-        return mapper.convertValue(oldCustomerMap, Customer.class);
-    }
+    
 }

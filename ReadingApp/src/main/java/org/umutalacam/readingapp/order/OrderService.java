@@ -8,16 +8,17 @@ import org.umutalacam.readingapp.book.Book;
 import org.umutalacam.readingapp.book.BookService;
 import org.umutalacam.readingapp.customer.Customer;
 import org.umutalacam.readingapp.customer.CustomerService;
+import org.umutalacam.readingapp.order.exception.IllegalOrdersRequest;
 import org.umutalacam.readingapp.order.exception.InvalidOrderException;
 import org.umutalacam.readingapp.order.exception.OrderNotFoundException;
 import org.umutalacam.readingapp.order.exception.OutOfStockException;
 import org.umutalacam.readingapp.order.request.GetOrdersRequest;
 import org.umutalacam.readingapp.system.exception.RestException;
 
-import java.util.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,11 @@ public class OrderService {
      * @return page of orders
      */
     public Page<Order> getOrdersPage(GetOrdersRequest request) throws RestException {
-        //TODO validation
+        if (request.getPageIndex() < 0)
+            throw new IllegalOrdersRequest("Page index cannot be smaller than 0.");
+        if (request.getPageSize() <= 0)
+            throw new IllegalOrdersRequest("Page size cannot be smaller than 1.");
+
         PageRequest pageRequest = PageRequest.of(request.getPageIndex(), request.getPageSize());
         int pageIndex = request.getPageIndex();
         int pageSize = request.getPageSize();
@@ -96,8 +101,6 @@ public class OrderService {
     }
 
     public Order createOrder(Order order) throws RestException {
-        // todo validation
-
         // fetch customer for ensuring the customer integrity
         Customer orderCustomer = customerService.getCustomerByUsername(order.getCustomer().getUsername());
         Customer refCustomer = new Customer();

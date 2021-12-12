@@ -1,11 +1,12 @@
 package org.umutalacam.readingapp.customer;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.umutalacam.readingapp.system.exception.RestException;
+import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -16,8 +17,16 @@ public class CustomerController {
     }
 
     @GetMapping("/customer")
-    public List<Customer> getAllCustomers() {
-        return this.customerService.getAllCustomers();
+    public PaginatedResponse<Customer> getAllCustomers(@RequestParam(defaultValue = "1") int p,
+                                                       @RequestParam(defaultValue = "5") int pageSize) throws RestException {
+        Page<Customer> customerPage = this.customerService.getCustomerPage(p, pageSize);
+        PaginatedResponse<Customer> response = new PaginatedResponse<>();
+        response.setCurrentPage(p);
+        response.setPageSize(pageSize);
+        response.setTotalPages(customerPage.getTotalPages());
+        response.setTotalRecords(customerPage.getTotalElements());
+        response.setRecords(customerPage.getContent());
+        return response;
     }
 
     @GetMapping("/customer/{username}")
@@ -31,7 +40,7 @@ public class CustomerController {
         // Build response
         HashMap<String, Object> savedCustomerResponse = new HashMap<>();
         savedCustomerResponse.put("message", "Customer created successfully.");
-        savedCustomerResponse.put("customer", savedCustomer);
+        savedCustomerResponse.put("customer", savedCustomer.getCustomerId());
         return ResponseEntity.ok(savedCustomerResponse);
     }
 

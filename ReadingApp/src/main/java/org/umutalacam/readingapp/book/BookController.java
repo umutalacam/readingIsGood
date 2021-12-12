@@ -18,7 +18,7 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public PaginatedResponse<Book> getAllBooks(@RequestParam int p,
+    public PaginatedResponse<Book> getAllBooks(@RequestParam(defaultValue = "0") int p,
                                                @RequestParam(defaultValue = "5", required = false) int pageSize) {
 
         Page<Book> bookPage =  this.bookService.getBookPage(p, pageSize);
