@@ -1,6 +1,6 @@
 services:
 
-  mongo:
+  api-db:
     image: mongo
     restart: always
     environment:
@@ -8,3 +8,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: reading
     ports:
       - 27017:27017
+
+  server:
+    build: .
+    depends_on:
+      - api-db
+    ports:
+      - 8080:8080
+    links:
+      - api-db

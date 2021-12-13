@@ -7,5 +7,5 @@ spring:
       password: reading
       database: reading_db
       port: 27017
-      host: localhost
+      host: api-db
       auto-index-creation: true
