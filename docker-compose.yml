@@ -9,7 +9,7 @@ services:
     ports:
       - 27017:27017
 
-  mongo_seed:
+  mongo-seed:
     image: mongo
     links:
       - api-db
@@ -18,7 +18,7 @@ services:
     command:
       /mongo-seed/import.sh
 
-  server:
+  readinf-app:
     build: .
     depends_on:
       - api-db
