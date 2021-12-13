@@ -49,16 +49,16 @@ public class BookCollectionTest {
         book2.setPressYear(1991);
         book2.setPrice(2.0);
 
-        String id = bookService.createBook(book);
+        String id = bookService.createBook(book).getBookId();
         insertedBooks.add(book);
         System.out.println("Created book id: "+id);
 
-        id = bookService.createBook(book1);
+        id = bookService.createBook(book1).getBookId();
         insertedBooks.add(book1);
 
         System.out.println("Created book id: "+id);
 
-        id = bookService.createBook(book2);
+        id = bookService.createBook(book2).getBookId();
         insertedBooks.add(book2);
 
         System.out.println("Created book id: "+id);

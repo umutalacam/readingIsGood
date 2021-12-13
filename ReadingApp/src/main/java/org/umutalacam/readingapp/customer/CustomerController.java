@@ -1,8 +1,10 @@
 package org.umutalacam.readingapp.customer;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.customer.response.CustomerCreateResponse;
 import org.umutalacam.readingapp.system.exception.RestException;
 import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
@@ -38,10 +40,10 @@ public class CustomerController {
     public ResponseEntity<?> register(@RequestBody Customer customer) throws RestException {
         Customer savedCustomer = this.customerService.createCustomer(customer);
         // Build response
-        HashMap<String, Object> savedCustomerResponse = new HashMap<>();
-        savedCustomerResponse.put("message", "Customer created successfully.");
-        savedCustomerResponse.put("customer", savedCustomer.getCustomerId());
-        return ResponseEntity.ok(savedCustomerResponse);
+        CustomerCreateResponse response = new CustomerCreateResponse();
+        response.setMessage("Customer created successfully.");
+        response.setCustomerId(savedCustomer.getCustomerId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/customer/{username}")

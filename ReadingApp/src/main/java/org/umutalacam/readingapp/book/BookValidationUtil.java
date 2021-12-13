@@ -8,7 +8,12 @@ import java.util.List;
 public class BookValidationUtil {
     private BookValidationUtil() {}
 
-    public BookValidationUtil validateBook(Book book) throws BookValidationException {
+    /**
+     * Validates that book object has required fields for persisting
+     * @param book book to be validated
+     * @throws BookValidationException thrown if book has missing fields or not valid.
+     */
+    public void validateBook(Book book) throws BookValidationException {
         // All fields are required for book
         List<String> errors = new ArrayList<>();
         if (book.getInStock() == null)
@@ -24,7 +29,6 @@ public class BookValidationUtil {
         if (!errors.isEmpty())
             throw new BookValidationException("Book is not valid.", errors);
 
-        return this;
     }
 
     public static BookValidationUtil getInstance() {

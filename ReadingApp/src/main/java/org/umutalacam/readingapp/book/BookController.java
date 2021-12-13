@@ -20,8 +20,10 @@ public class BookController {
     @GetMapping("/book")
     public PaginatedResponse<Book> getAllBooks(@RequestParam(defaultValue = "0") int p,
                                                @RequestParam(defaultValue = "5", required = false) int pageSize) {
-
+        // Get page of book
         Page<Book> bookPage =  this.bookService.getBookPage(p, pageSize);
+
+        // Build paginated response
         PaginatedResponse<Book> response = new PaginatedResponse<>();
         response.setCurrentPage(bookPage.getNumber());
         response.setPageSize(bookPage.getSize());
@@ -38,13 +40,9 @@ public class BookController {
 
     @PostMapping("/book")
     public ResponseEntity<CreateBookResponse> createBook(@RequestBody Book book) throws RestException {
-        String generatedBookId = bookService.createBook(book);
-
-        if (generatedBookId == null)
-            throw new RestException("Error", HttpStatus.BAD_GATEWAY, "/");
-
+        String generatedBookId = bookService.createBook(book).getBookId();
         CreateBookResponse response = new CreateBookResponse(generatedBookId);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/book/{id}")
@@ -55,7 +53,5 @@ public class BookController {
         RestResponse response = new RestResponse("Book updated successfully.");
         return ResponseEntity.ok(response);
     }
-
-    // TODO: delete request
 
 }

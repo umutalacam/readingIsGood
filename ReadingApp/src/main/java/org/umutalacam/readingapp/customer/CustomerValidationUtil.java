@@ -12,7 +12,11 @@ public class CustomerValidationUtil {
     private final Pattern emailAddressPattern =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-
+    /**
+     * Validate customer data fields for persisting customers
+     * @param customer customer object to bew verified
+     * @throws CustomerValidationException thrown if
+     */
     public void validateCustomer(Customer customer) throws CustomerValidationException {
         List<String> errors = new ArrayList<>();
         if (customer.getEmail() == null)

@@ -7,15 +7,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.exception.CustomerNotFoundException;
-import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
+import org.umutalacam.readingapp.customer.exception.DuplicateCustomerException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final static Logger logger = Logger.getLogger(CustomerService.class.getName());
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -26,6 +28,7 @@ public class CustomerService {
      * @return List of customers
      */
     public List<Customer> getAllCustomers() {
+        logger.info("Retrieving all customers.");
         return this.customerRepository.findAll();
     }
 
@@ -36,6 +39,7 @@ public class CustomerService {
      * @return Page of customers
      */
     public Page<Customer> getCustomerPage(int pageIndex, int pageSize) throws RestException {
+        logger.info("Retrieving page of customers. pageIndex:" + pageIndex + " pageSize:" + pageSize);
         if (pageIndex < 0)
             throw new RestException("Page index can't be smaller than 0.", HttpStatus.BAD_REQUEST, null);
         if (pageSize <= 0)
@@ -50,6 +54,7 @@ public class CustomerService {
      * @throws RestException thrown if the validation failed.
      */
     public Customer getCustomerByUsername(String username) throws RestException {
+        logger.info("Retrieving customer using username:"+ username);
         Optional<Customer> customer = this.customerRepository.findCustomerByUsername(username);
         if (customer.isEmpty()) {
             throw new CustomerNotFoundException("Customer does not exist.");
@@ -64,21 +69,26 @@ public class CustomerService {
      * @throws RestException thrown if validation failed.
      */
     public Customer createCustomer(Customer customer) throws RestException {
+        logger.info("Creating new customer. "+ customer);
+        logger.info("Validating customer data.");
         CustomerValidationUtil.getInstance().validateCustomer(customer);
         try {
             // Encode password
+            logger.info("Encoding password.");
             String encodedPassword = encodePassword(customer.getPassword());
             customer.setPassword(encodedPassword);
-            return this.customerRepository.save(customer);
+            Customer newCustomer =  this.customerRepository.save(customer);
+            logger.info("Customer created successfully. customerId:" + newCustomer.getCustomerId());
+            return newCustomer;
         } catch (DuplicateKeyException exception) {
             String message = exception.getMessage();
             if (message != null) {
                 if (message.contains("username"))
-                    throw new DuplicateRecordException("Username already exists.");
+                    throw new DuplicateCustomerException("Username already exists.");
                 else if (message.contains("email"))
-                    throw new DuplicateRecordException("Email already exists.");
+                    throw new DuplicateCustomerException("Email already exists.");
             }
-            throw new DuplicateRecordException("Duplicate records.");
+            throw new DuplicateCustomerException("Duplicate records.");
         }
     }
 
@@ -91,13 +101,14 @@ public class CustomerService {
      */
     public Customer updateCustomer(String username, Customer customer) throws RestException {
         // Check if customer exists
+        logger.info("Retrieving existing user for update.");
         Optional<Customer> optCustomer = this.customerRepository.findCustomerByUsername(username);
         if (optCustomer.isEmpty())
             throw new CustomerNotFoundException("Customer does not exist");
 
         // Map new values to existing customer
         Customer oldCustomer = optCustomer.get();
-
+        logger.info("Updating customer fields.");
         customer.setCustomerId(oldCustomer.getCustomerId());
         if (customer.getUsername() == null) customer.setUsername(oldCustomer.getUsername());
         if (customer.getFirstName() == null) customer.setFirstName(oldCustomer.getFirstName());
@@ -105,7 +116,11 @@ public class CustomerService {
         if (customer.getEmail() == null) customer.setEmail(oldCustomer.getEmail());
         if (customer.getPassword() == null) customer.setPassword(oldCustomer.getPassword());
         else customer.setPassword(encodePassword(customer.getPassword()));
-        return this.customerRepository.save(customer);
+
+        Customer updatedCustomer = this.customerRepository.save(customer);
+        logger.info("Customer updated successfully. "+ updatedCustomer);
+
+        return updatedCustomer;
     }
 
     private String encodePassword(String password) {
