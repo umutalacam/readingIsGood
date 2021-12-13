@@ -3,10 +3,13 @@ package org.umutalacam.readingapp.order;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.customer.Customer;
 import org.umutalacam.readingapp.order.request.CreateOrderRequest;
 import org.umutalacam.readingapp.order.request.GetOrdersRequest;
 import org.umutalacam.readingapp.order.response.OrderCreatedResponse;
+import org.umutalacam.readingapp.security.CustomerDetails;
 import org.umutalacam.readingapp.system.exception.RestException;
 import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
@@ -51,7 +54,11 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest orderRequest) throws RestException {
+    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest orderRequest,
+                                         @AuthenticationPrincipal CustomerDetails details) throws RestException {
+        Customer currentCustomer = details.getCustomer();
+        orderRequest.setUsername(currentCustomer.getUsername());
+
         Order createdOrder = this.orderService.createOrder(orderRequest);
         // Build response
         OrderCreatedResponse response = new OrderCreatedResponse();

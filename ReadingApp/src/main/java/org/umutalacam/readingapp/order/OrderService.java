@@ -145,9 +145,7 @@ public class OrderService {
 
         // Fetch customer for ensuring the customer integrity
         Customer orderCustomer = customerService.getCustomerByUsername(orderRequest.getUsername());
-        Customer refCustomer = new Customer();
-        refCustomer.setCustomerId(orderCustomer.getCustomerId());
-        order.setCustomer(refCustomer);
+        order.setCustomer(orderCustomer);
         logger.info("Creating order for customer, " + orderCustomer.getUsername());
 
         // Create book orders list
@@ -168,7 +166,7 @@ public class OrderService {
                 // Fetch ordered book
                 String orderedBookId = bo.getBookId();
                 Book orderedBook = this.bookService.getBookById(orderedBookId);
-                logger.info("Fethched ordered book: " + orderedBook);
+                logger.info("Fetched ordered book: " + orderedBook);
 
                 // Check stock status
                 int booksInStock = orderedBook.getInStock();
