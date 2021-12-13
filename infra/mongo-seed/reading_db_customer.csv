@@ -1,0 +1,17 @@
+class, email, firstName, lastName, password, username
+org.umutalacam.readingapp.customer.Customer,john.doe@test.com,John,Doe,$2a$10$tSGoFteVzneFOPKk5NEZte8BiYp67H6jAdnzE5md150iiURTdSuFu,john.doe
+org.umutalacam.readingapp.customer.Customer,alice@test.com,Alice,Wonder,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,alice
+org.umutalacam.readingapp.customer.Customer,bean@test.com,Ben,Order,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,ben
+org.umutalacam.readingapp.customer.Customer,bob@test.com,Bob,Fisher,$2a$10$LjCCdYHhRghgots3CQFZy.DfUlRqC4JpYprye1E/4FpaMFbaNKfn2,bob
+org.umutalacam.readingapp.customer.Customer,space@test.com,Space,Cadet,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,space
+org.umutalacam.readingapp.customer.Customer,think@test.com,Think,Pad,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,think
+org.umutalacam.readingapp.customer.Customer,leno@test.com,Lenovo,IBM,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,leno
+org.umutalacam.readingapp.customer.Customer,poe@test.com,Poe,Garden,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,poe
+org.umutalacam.readingapp.customer.Customer,jordan@test.com,Michael,Jordan,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,jordan
+org.umutalacam.readingapp.customer.Customer,eliza@test.com,Eliza,Intelligent,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,eliza
+org.umutalacam.readingapp.customer.Customer,john.sculley@test.com,John,Sculley,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,sculley
+org.umutalacam.readingapp.customer.Customer,steve@test.com,Steve,Jobs,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,steve21
+org.umutalacam.readingapp.customer.Customer,moon@test.com,Margaret,Hamilton,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,hamilton
+org.umutalacam.readingapp.customer.Customer,usa@test.com,Apollo,11,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,apollo
+org.umutalacam.readingapp.customer.Customer,bud.beer@come.de,Josp,Bud,$2a$10$9FceaxUoXKND4mjEInfWYehuvJjtkghKw1tPMVTc7sN65LOkjil/6,joseph
+org.umutalacam.readingapp.customer.Customer,bud@come.de,Josp,Bud,$2a$10$8DrUYNCIa49d9/Y5orggKeNcRA3wag8aMnbSnPQGoHvDF.qcqmgZ2,bud

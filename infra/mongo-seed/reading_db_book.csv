@@ -1,0 +1,186 @@
+class, author,inStock, numPages, pressYear, price, title
+org.umutalacam.readingapp.book.Book,Vivian Vande Velde,56,620,2012,12.2,8 Class Pets + 1 Squirrel ÷ 1 Dog = Chaos
+org.umutalacam.readingapp.book.Book,Betty G. Birney,34,1200,2009,2,Adventure According to Humphrey
+org.umutalacam.readingapp.book.Book,Chris Kurtz,17,20,2013,2,The Adventures of a South Pole Pig
+org.umutalacam.readingapp.book.Book,Marion Jensen,83,620,2014,12.98,Almost Super
+org.umutalacam.readingapp.book.Book,Holly Goldberg Sloan,46,1200,2015,214.21,Appleblossom the Possum
+org.umutalacam.readingapp.book.Book,Alan Gratz,22,20,2017,2,Ban This Book *
+org.umutalacam.readingapp.book.Book,Elana K. Arnold,8,0,2018,0,Bat and the Waiting Game
+org.umutalacam.readingapp.book.Book,Rob Buyea,20,620,2010,123.45,Because of Mr. Terupt
+org.umutalacam.readingapp.book.Book,Cynthia Lord,80,1200,2019,12.32,Because of the Rabbit
+org.umutalacam.readingapp.book.Book,Kate DiCamillo,62,620,2000,12.32,Because of Winn-Dixie
+org.umutalacam.readingapp.book.Book,Roald Dahl,29,20,1982,123.45,The BFG
+org.umutalacam.readingapp.book.Book,Luke Sharpe,32,0,2015,4.32,Billy Sure Kid Entrepreneur
+org.umutalacam.readingapp.book.Book,Kwame Alexander,20,620,2016,4.32,Booked
+org.umutalacam.readingapp.book.Book,Henry Winkler and Lin Oliver,78,1200,2014,4.32,Bookmarks Are People Too!
+org.umutalacam.readingapp.book.Book,Elana K. Arnold,0,20,2017,123.45,A Boy Called Bat
+org.umutalacam.readingapp.book.Book,William Kamkwamba and Bryan Mealer,58,620,2015,123.45,The Boy Who Harnessed the Wind
+org.umutalacam.readingapp.book.Book,William Kamkwamba and Bryan Mealer,23,1200,2015,123.45,The Boy Who Harnessed the Wind
+org.umutalacam.readingapp.book.Book,Henry Cole,19,20,2016,123.45,Brambleheart
+org.umutalacam.readingapp.book.Book,Jacqueline Woodson,35,100,2014,2,Brown Girl Dreaming
+org.umutalacam.readingapp.book.Book,Christopher Paul Curtis,17,100,1999,2,"Bud, Not Buddy"
+org.umutalacam.readingapp.book.Book,Roald Dahl (Available in Spanish),12,100,1964,12.2,Charlie and the Chocolate Factory
+org.umutalacam.readingapp.book.Book,Roald Dahl,24,100,1964,12.2,Charlie and the Chocolate Factory
+org.umutalacam.readingapp.book.Book,Bill Harley,16,100,2013,12.2,Charlie Bumpers vs. The Teacher of the Year
+org.umutalacam.readingapp.book.Book,E.B. White,107,100,1952,12.2,Charlotte’s Web
+org.umutalacam.readingapp.book.Book,E.B. White,73,100,1952,12.2,Charlotte’s Web
+org.umutalacam.readingapp.book.Book,Patrick Skene Catling,11,100,1952,12.2,The Chocolate Touch
+org.umutalacam.readingapp.book.Book,Allan Woodrow,26,100,2015,12.2,Class Dismissed
+org.umutalacam.readingapp.book.Book,Sara Pennypacker,47,100,2006,12.2,Clementine
+org.umutalacam.readingapp.book.Book,Sundee T. Frazier,69,100,2016,12.2,"Cleo Edison Oliver, Playground Millionaire"
+org.umutalacam.readingapp.book.Book,7s,31,100,2013,12.2,Counting
+org.umutalacam.readingapp.book.Book,Holly Goldberg Sloan,56,100,2013,12.2,Counting
+org.umutalacam.readingapp.book.Book,7s,25,100,2015,12.2,Crenshaw
+org.umutalacam.readingapp.book.Book,Holly Goldberg Sloan,68,100,2015,12.2,Crenshaw
+org.umutalacam.readingapp.book.Book,Katherine Applegate,64,100,1960,12.2,The Cricket in Times Square
+org.umutalacam.readingapp.book.Book,Katherine Applegate,14,100,2014,12.2,The Crossover
+org.umutalacam.readingapp.book.Book,George Selden,7,100,2013,12.2,Dog Days
+org.umutalacam.readingapp.book.Book,Kwame Alexander,87,100,2013,12.2,Dog Days
+org.umutalacam.readingapp.book.Book,Karen English,16,100,2017,12.2,Dragons and Marshmallows
+org.umutalacam.readingapp.book.Book,Karen English,74,100,2017,12.2,Dragons and Marshmallows
+org.umutalacam.readingapp.book.Book,Asia Citro,37,100,2018,12.2,Dragons in a Bag
+org.umutalacam.readingapp.book.Book,Asia Citro,57,100,2006,12.2,"Drita, My Homegirl *"
+org.umutalacam.readingapp.book.Book,Zetta Elliott,24,100,2014,12.2,El Deafo
+org.umutalacam.readingapp.book.Book,Jenny Lombard,65,100,2014,12.2,El Deafo
+org.umutalacam.readingapp.book.Book,Cece Bell,3 ,100,2012,12.2,EllRay Jakes Is a Rock Star!
+org.umutalacam.readingapp.book.Book,Cece Bell,30,100,1956,12.2,The Enormous Egg
+org.umutalacam.readingapp.book.Book,Sally Warner,79,100,2013,12.2,Escape from Mr. Lemoncello’s Library
+org.umutalacam.readingapp.book.Book,Oliver Butterworth,73,100,2000,12.2,Esperanza Rising
+org.umutalacam.readingapp.book.Book,Chris Grabenstein,60,100,2000,12.2,Esperanza Rising
+org.umutalacam.readingapp.book.Book,Pam Muñoz Ryan,54,100,1970,12.2,Fantastic Mr. Fox *
+org.umutalacam.readingapp.book.Book,Pam Muñoz Ryan,74,100,1970,12.2,Fantastic Mr. Fox *
+org.umutalacam.readingapp.book.Book,Roald Dahl,25,100,2016,12.2,Fenway and Hattie
+org.umutalacam.readingapp.book.Book,Roald Dahl,45,100,2018,12.2,Fenway and Hattie
+org.umutalacam.readingapp.book.Book,Victoria J. Coe,98,100,2015,12.2,Finding Langston
+org.umutalacam.readingapp.book.Book,Victoria Coe,9,100,2015,12.2,Fish in a Tree
+org.umutalacam.readingapp.book.Book,Lesa Cline-Ransome,29,100,2013,12.2,Fish in a Tree
+org.umutalacam.readingapp.book.Book,Lynda Mullaly Hunt,0,100,2013,12.2,Flora & Ulysses
+org.umutalacam.readingapp.book.Book,Lynda Mullaly Hunt,27,100,2018,12.2,Flora & Ulysses
+org.umutalacam.readingapp.book.Book,Kate DiCamillo (Available in Spanish),36,100,2014,12.2,Flying Lessons & Other Stories *
+org.umutalacam.readingapp.book.Book,Kate DiCamillo,55,100,2014,12.2,Edited
+org.umutalacam.readingapp.book.Book,Ellen Oh,35,100,2015,12.2,The Fourteenth Goldfish
+org.umutalacam.readingapp.book.Book,Emily Holm,60,100,2005,12.2,The Fourteenth Goldfish
+org.umutalacam.readingapp.book.Book,Jennifer Holm,20,100,2005,12.2,Frank Einstein and the Electro-Finger
+org.umutalacam.readingapp.book.Book,Jon Scieszka,78,100,1992,12.2,Friendship According to Humphrey
+org.umutalacam.readingapp.book.Book,Betty G. Birney,39,100,2020,12.2,Friendship According to Humphrey
+org.umutalacam.readingapp.book.Book,Betty G. Birney,29,100,1968,12.2,Frindle
+org.umutalacam.readingapp.book.Book,Andrew Clements,7,100,2016,12.2,From the Desk of Zoe Washington
+org.umutalacam.readingapp.book.Book,Janae Marks,84,100,2002,12.2,From the Mixed-Up Files of Mrs. Basil E. Frankweiler
+org.umutalacam.readingapp.book.Book,E.L. Konigsberg,61,100,1996,12.2,Ghost
+org.umutalacam.readingapp.book.Book,Jason Reynolds,48,100,2015,12.2,Gooney Bird Greene
+org.umutalacam.readingapp.book.Book,Lois Lowry,21,100,2003,12.2,Gooseberry Park
+org.umutalacam.readingapp.book.Book,Cynthia Rylant,52,100,2003,12.2,Gooseberry Park and the Master Plan
+org.umutalacam.readingapp.book.Book,Cynthia Rylant,53,100,2020,12.2,Granny Torrelli Makes Soup
+org.umutalacam.readingapp.book.Book,Sharon Creech,1,100,1999,12.2,"Niagara Falls, Or Does It?"
+org.umutalacam.readingapp.book.Book,Henry Winkler and Lin Oliver,15,100,2002,12.2,Harbor Me
+org.umutalacam.readingapp.book.Book,Jacquline Woodson,60,100,1973,12.2,Holes
+org.umutalacam.readingapp.book.Book,Louis Sachar,87,100,2017,12.2,Hoot
+org.umutalacam.readingapp.book.Book,Carl Hiassen,1,100,1960,12.2,How to Eat Fried Worms
+org.umutalacam.readingapp.book.Book,Thomas Rockwell,84,100,1961,12.2,I Am Malala
+org.umutalacam.readingapp.book.Book,"Malala Yousafzai, Patricia McCormick",67,100,1961,12.2,Insignificant Events in the Life of a Cactus
+org.umutalacam.readingapp.book.Book,Dusti Bowling,75,100,1991,12.2,Island of the Blue Dolphins *
+org.umutalacam.readingapp.book.Book,Scott O’Dell,0,100,2000,12.2,James and the Giant Peach
+org.umutalacam.readingapp.book.Book,Roald Dahl (Available in Spanish),34,100,2000,12.2,James and the Giant Peach
+org.umutalacam.readingapp.book.Book,Roald Dahl,69,100,2008,12.2,"Jeremy Thatcher, Dragon Hatcher"
+org.umutalacam.readingapp.book.Book,Bruce Coville,13,100,2008,12.2,Judy Moody
+org.umutalacam.readingapp.book.Book,Megan McDonald,0,100,2012,12.2,Judy Moody
+org.umutalacam.readingapp.book.Book,Megan McDonald,21,100,2011,12.2,Keena Ford and the Second-Grade Mix-Up
+org.umutalacam.readingapp.book.Book,Melissa Thomson,12,100,2007,12.2,Kenny & the Dragon
+org.umutalacam.readingapp.book.Book,Tony DiTerlizzi,58,100,2007,12.2,The Lemonade Crime
+org.umutalacam.readingapp.book.Book,Jacqueline Davies,27,100,2018,12.2,The Lemonade Crime
+org.umutalacam.readingapp.book.Book,Jacqueline Davies,60,100,2018,12.2,The Lemonade War
+org.umutalacam.readingapp.book.Book,Jacqueline Davies (Available in Spanish),34,100,1950,12.2,The Lemonade War
+org.umutalacam.readingapp.book.Book,Jacqueline Davies,58,100,2015,12.2,Life According to Og the Frog
+org.umutalacam.readingapp.book.Book,Betty G. Birney,42,100,2010,12.2,Life According to Og the Frog
+org.umutalacam.readingapp.book.Book,Betty G. Birney,33,100,2019,12.2,"The Lion, the Witch and the Wardrobe"
+org.umutalacam.readingapp.book.Book,C.S. Lewis,31,100,2001,12.2,Lola Levine Is Not Mean!
+org.umutalacam.readingapp.book.Book,Monica Brown,87,100,2005,12.2,A Long Walk to Water
+org.umutalacam.readingapp.book.Book,Linda Sue Park,34,100,2018,12.2,Look Both Ways *
+org.umutalacam.readingapp.book.Book,Jason Reynolds,40,100,2019,12.2,Love That Dog
+org.umutalacam.readingapp.book.Book,Sharon Creech,34,100,2008,12.2,Lunch Money
+org.umutalacam.readingapp.book.Book,Andrew Clements,49,100,1988,12.2,Malala: My Story of Standing Up for Girls’ Rights
+org.umutalacam.readingapp.book.Book,"Malala Yousafzai, Adapted Sarah J. Robbins",84,100,1988,12.2,Malamander
+org.umutalacam.readingapp.book.Book,Thomas Taylor,38,100,2018,12.2,Masterpiece
+org.umutalacam.readingapp.book.Book,Elise Broach,53,100,2018,12.2,Matilda *
+org.umutalacam.readingapp.book.Book,Roald Dahl,49,100,2006,12.2,Matilda *
+org.umutalacam.readingapp.book.Book,Roald Dahl,80,100,2006,12.2,Merci Suárez Changes Gears
+org.umutalacam.readingapp.book.Book,Meg Medina,62,100,1965,12.2,Merci Suárez Changes Gears
+org.umutalacam.readingapp.book.Book,Meg Medina,75,100,1965,12.2,The Miraculous Journey of Edward Tulane *
+org.umutalacam.readingapp.book.Book,Kate DiCamillo (Available in Spanish),0,100,1938,12.2,The Miraculous Journey of Edward Tulane *
+org.umutalacam.readingapp.book.Book,Kate DiCamillo,17,100,1973,12.2,The Mouse and the Motorcycle
+org.umutalacam.readingapp.book.Book,Beverly Cleary (Available in Spanish),55,100,1948,12.2,The Mouse and the Motorcycle
+org.umutalacam.readingapp.book.Book,Beverly Cleary,27,100,1959,12.2,Mr. Popper’s Penguins
+org.umutalacam.readingapp.book.Book,Richard and Florence Atwater,29,100,2012,12.2,Mrs. Fri
+org.umutalacam.readingapp.book.Book,and the Rats of NIMH,35,100,2017,12.2,My Father’s Dragon
+org.umutalacam.readingapp.book.Book,Robert C. O’Brien,66,100,2010,12.2,My Side of the Mountain
+org.umutalacam.readingapp.book.Book,Ruth Stiles Gannett,0,100,2019,12.2,Mysteries According to Humphrey
+org.umutalacam.readingapp.book.Book,Jean Craighead George,66,100,1999,12.2,The Mysterious Abductions
+org.umutalacam.readingapp.book.Book,Betty G. Birney,70,100,2007,12.2,A Nest for Celeste
+org.umutalacam.readingapp.book.Book,Tracey Hecht,35,100,2014,12.2,The Next Great Paulie Fink
+org.umutalacam.readingapp.book.Book,Henry Cole,56,100,2011,12.2,Nim’s Island
+org.umutalacam.readingapp.book.Book,Ali Benjamin,17,100,2011,12.2,No Talking
+org.umutalacam.readingapp.book.Book,Wendy Orr,73,100,2010,12.2,Nuts to You
+org.umutalacam.readingapp.book.Book,Andrew Clements,99,100,2013,12.2,The One and Only Ivan *
+org.umutalacam.readingapp.book.Book,Lynne Rae Perkins,48,100,2011,12.2,The One and Only Ivan *
+org.umutalacam.readingapp.book.Book,Katherine Applegate,38,100,1995,12.2,Out of My Mind
+org.umutalacam.readingapp.book.Book,Katherine Applegate,24,100,2005,12.2,The Pet War
+org.umutalacam.readingapp.book.Book,Sharon M. Draper,3,100,2017,12.2,Pie
+org.umutalacam.readingapp.book.Book,Allan Woodrow,80,100,2015,12.2,Poppy
+org.umutalacam.readingapp.book.Book,Sarah Weeks,68,100,2017,12.2,Project Mulberry
+org.umutalacam.readingapp.book.Book,Avi,70,100,1998,12.2,Refugee
+org.umutalacam.readingapp.book.Book,Linda Sue Park,16,100,2006,12.2,Rescue on the Oregon Trail
+org.umutalacam.readingapp.book.Book,Alan Gratz,10,100,2013,12.2,Restart
+org.umutalacam.readingapp.book.Book,Kate Messner,0,100,2016,12.2,Riding Freedom
+org.umutalacam.readingapp.book.Book,Gordon Korman,32,100,2005,12.2,Rules
+org.umutalacam.readingapp.book.Book,Pam Munoz Ryan,78,100,1991,12.2,Rump
+org.umutalacam.readingapp.book.Book,Cynthia Lord,38,100,1978,12.2,Save Me a Seat
+org.umutalacam.readingapp.book.Book,Liesl Shurtliff,60,100,2004,12.2,School Days According to Humphrey
+org.umutalacam.readingapp.book.Book,Sarah Weeks and Gita Varadarajan,31,100,2018,12.2,Shiloh *
+org.umutalacam.readingapp.book.Book,Betty G. Birney,45,100,1980,12.2,Sideways Stories from Wayside School
+org.umutalacam.readingapp.book.Book,Phyllis Reynolds Naylor,67,100,1945,12.2,So B. It
+org.umutalacam.readingapp.book.Book,Louis Sachar,52,100,2011,12.2,Stella Díaz Has Something to Say
+org.umutalacam.readingapp.book.Book,Sarah Weeks,0,100,1976,12.2,Stone Fox
+org.umutalacam.readingapp.book.Book,Angela Dominguez,33,100,2004,12.2,Stuart Little
+org.umutalacam.readingapp.book.Book,John Reynolds Gardiner,22,100,2004,12.2,Summer According to Humphrey
+org.umutalacam.readingapp.book.Book,E.B. White,2,100,1972,12.2,Summer of the Monkeys
+org.umutalacam.readingapp.book.Book,Betty G. Birney,83,100,1974,12.2,The Tale of Despereaux *
+org.umutalacam.readingapp.book.Book,Wilson Rawls,37,100,2006,12.2,The Tale of Despereaux *
+org.umutalacam.readingapp.book.Book,Kate DiCamillo (Available in Spanish),10,100,2000,12.2,Tales of a Fourth Grade Nothing
+org.umutalacam.readingapp.book.Book,Kate DiCamillo,62,100,1970,12.2,The Toothpaste Millionaire
+org.umutalacam.readingapp.book.Book,Judy Blume,83,100,1970,12.2,Toys Go Out
+org.umutalacam.readingapp.book.Book,Jean Merrill,34,100,1975,12.2,Toys! Amazing Stories Behind Some Great Inventions
+org.umutalacam.readingapp.book.Book,Emily Jenkins,48,100,2015,12.2,The Trumpet of the Swan
+org.umutalacam.readingapp.book.Book,Don Wulffson,17,100,1994,12.2,The Trumpet of the Swan
+org.umutalacam.readingapp.book.Book,E. B. White,50,100,2000,12.2,Tuck Everlasting
+org.umutalacam.readingapp.book.Book,E. B. White,51,100,1990,12.2,Upside-Down Magic
+org.umutalacam.readingapp.book.Book,Natalie Babbitt,56,100,1995,12.2,Walk Two Moons
+org.umutalacam.readingapp.book.Book,"Sarah Mlynowski, Lauren Myracle, and Emily Jenkins",8,100,2020,12.2,The Wanderer
+org.umutalacam.readingapp.book.Book,Sharon Creech,89,100,2007,12.2,The Water Horse
+org.umutalacam.readingapp.book.Book,Sharon Creech,25,100,2009,12.2,The Watsons Go to Birmingham—1963
+org.umutalacam.readingapp.book.Book,Dick King-Smith,71,100,2016,1.2,Ways to Make Sunshine
+org.umutalacam.readingapp.book.Book,Christopher Paul Curtis,20,100,2016,1.2,The Wednesday Wars
+org.umutalacam.readingapp.book.Book,Renée Watson,64,100,2012,1.2,Where the Mountain Meets the Moon
+org.umutalacam.readingapp.book.Book,Gary D. Schmidt,52,100,2017,1.2,The Wild Robot
+org.umutalacam.readingapp.book.Book,Grace Lin,72,100,2017,1.2,The Wild Robot
+org.umutalacam.readingapp.book.Book,Peter Brown,3 ,100,1899,1.2,Winter According to Humphrey
+org.umutalacam.readingapp.book.Book,Peter Brown,36,100,2012,1.2,Wishtree
+org.umutalacam.readingapp.book.Book,Betty G. Birney,72,100,2005,1.2,Wishtree
+org.umutalacam.readingapp.book.Book,R.J. Palacio (Available in Spanish),98,100,2016,1.2,The World According to Humphrey
+org.umutalacam.readingapp.book.Book,R.J. Palacio,0,100,2014,1.2,The World According to Humphrey
+org.umutalacam.readingapp.book.Book,Sharon Creech,21,100,2019,1.2,The World According to Humphrey
+org.umutalacam.readingapp.book.Book,Jason Reynolds,68,100,2000,1.2,The Year of Billy Miller
+org.umutalacam.readingapp.book.Book,Linda Sue Park,16,100,1982,1.2,Toys Go Out
+org.umutalacam.readingapp.book.Book,Monica Brown,62,100,2015,1.2,Toys! Amazing Stories Behind Some Great Inventions
+org.umutalacam.readingapp.book.Book,C.S. Lewis,21,100,2016,1.2,Tuck Everlasting
+org.umutalacam.readingapp.book.Book,Sharon Creech,52,100,2014,1.2,Upside-Down Magic
+org.umutalacam.readingapp.book.Book,Jason Reynolds,67,100,2017,1.2,Walk Two Moons
+org.umutalacam.readingapp.book.Book,Linda Sue Park,59,100,2015,1.2,Ways to Make Sunshine
+org.umutalacam.readingapp.book.Book,Monica Brown,32,100,2015,1.2,Where the Mountain Meets the Moon
+org.umutalacam.readingapp.book.Book,C.S. Lewis,78,100,2016,1.2,Winter According to Humphrey
+org.umutalacam.readingapp.book.Book,,0,,,0,The Mongo
+org.umutalacam.readingapp.book.Book,Steven Levy,12,620,1982,12.98,Hackers: Heroes of the computer revolution.
+org.umutalacam.readingapp.book.Book,MIT Press,1,1200,1998,214.21,Introducton to algorithms
+org.umutalacam.readingapp.book.Book,John Sculley,76,20,1991,2,Priestess of The Void
+org.umutalacam.readingapp.book.Book,Steven Levy,12,620,1982,12.98,Hackers: Heroes of the computer revolution.
+org.umutalacam.readingapp.book.Book,MIT Press,1,1200,1998,214.21,Introducton to algorithms
+org.umutalacam.readingapp.book.Book,John Sculley,76,20,1991,2,Priestess of The Void
