@@ -1,5 +1,6 @@
 package org.umutalacam.readingapp.security.jwt;
 
+import io.jsonwebtoken.Jwt;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -32,6 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws IOException, ServletException {
         String authorizationHeader = httpServletRequest.getHeader("Authorization");
 
+        logger.info("Checking request header.");
         if (!validateHeader(authorizationHeader)) {
             // return from the filter
             filterChain.doFilter(httpServletRequest, httpServletResponse);

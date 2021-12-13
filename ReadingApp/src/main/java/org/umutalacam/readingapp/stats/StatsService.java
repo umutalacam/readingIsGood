@@ -2,7 +2,6 @@ package org.umutalacam.readingapp.stats;
 
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.order.BookOrder;
-import org.umutalacam.readingapp.order.request.BookAmountPair;
 import org.umutalacam.readingapp.order.Order;
 import org.umutalacam.readingapp.order.OrderRepository;
 import org.umutalacam.readingapp.stats.response.Month;
@@ -12,11 +11,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class StatsService {
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+    private static final Logger logger = Logger.getLogger(StatsService.class.getName());
 
     public StatsService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
