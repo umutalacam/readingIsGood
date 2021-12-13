@@ -1,22 +1,21 @@
 package org.umutalacam.readingapp.customer;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.exception.CustomerNotFoundException;
 import org.umutalacam.readingapp.customer.exception.DuplicateRecordException;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class CustomerService {
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -24,7 +23,7 @@ public class CustomerService {
 
     /**
      * Returns all customers
-     * @return
+     * @return List of customers
      */
     public List<Customer> getAllCustomers() {
         return this.customerRepository.findAll();
@@ -48,7 +47,7 @@ public class CustomerService {
      * Returns the customer with the given username
      * @param username Username of the customer
      * @return Customer that have the given username
-     * @throws RestException
+     * @throws RestException thrown if the validation failed.
      */
     public Customer getCustomerByUsername(String username) throws RestException {
         Optional<Customer> customer = this.customerRepository.findCustomerByUsername(username);
@@ -59,14 +58,17 @@ public class CustomerService {
     }
 
     /**
-     * Valdiates the customer data and creates customer on the db.
+     * Validates the customer data and creates customer on the db.
      * @param customer Customer object that will be saved
      * @return Saved customer object, including insertion ID.
-     * @throws RestException
+     * @throws RestException thrown if validation failed.
      */
     public Customer createCustomer(Customer customer) throws RestException {
         CustomerValidationUtil.getInstance().validateCustomer(customer);
         try {
+            // Encode password
+            String encodedPassword = encodePassword(customer.getPassword());
+            customer.setPassword(encodedPassword);
             return this.customerRepository.save(customer);
         } catch (DuplicateKeyException exception) {
             String message = exception.getMessage();
@@ -85,7 +87,7 @@ public class CustomerService {
      * @param username oldUsername
      * @param customer The customer object that has updated fields.
      * @return Updated customer
-     * @throws RestException
+     * @throws RestException Rest response exceptions
      */
     public Customer updateCustomer(String username, Customer customer) throws RestException {
         // Check if customer exists
@@ -102,8 +104,13 @@ public class CustomerService {
         if (customer.getLastName() == null) customer.setLastName(oldCustomer.getLastName());
         if (customer.getEmail() == null) customer.setEmail(oldCustomer.getEmail());
         if (customer.getPassword() == null) customer.setPassword(oldCustomer.getPassword());
-
+        else customer.setPassword(encodePassword(customer.getPassword()));
         return this.customerRepository.save(customer);
+    }
+
+    private String encodePassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(password);
     }
     
 }

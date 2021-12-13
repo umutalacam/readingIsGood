@@ -1,6 +1,7 @@
 package org.umutalacam.readingapp.security.auth;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.customer.Customer;
 import org.umutalacam.readingapp.security.CustomerDetailService;
@@ -13,11 +14,13 @@ import org.umutalacam.readingapp.system.exception.RestException;
 public class AuthService {
     private final CustomerDetailService customerDetailService;
     private final JwtTokenService jwtTokenService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public AuthService(CustomerDetailService customerDetailService,
                        JwtTokenService jwtTokenService) {
         this.customerDetailService = customerDetailService;
         this.jwtTokenService = jwtTokenService;
+        passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public AuthResponse login(AuthRequest authRequest) throws RestException {
@@ -36,8 +39,7 @@ public class AuthService {
         CustomerDetails customerDetails = (CustomerDetails) this.customerDetailService.loadUserByUsername(username);
         Customer customer = customerDetails.getCustomer();
 
-        // TODO: encrypt password
-        if (customer.getPassword().equals(password)) {
+        if (passwordEncoder.matches(password, customer.getPassword())) {
             // login successful create jwt token
             String jwt = this.jwtTokenService.generateJwtForCustomer(customer);
             AuthResponse authResponse = new AuthResponse();
