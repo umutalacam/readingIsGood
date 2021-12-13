@@ -9,6 +9,8 @@ import org.umutalacam.readingapp.book.BookService;
 import org.umutalacam.readingapp.customer.Customer;
 import org.umutalacam.readingapp.customer.CustomerService;
 import org.umutalacam.readingapp.order.*;
+import org.umutalacam.readingapp.order.request.BookAmountPair;
+import org.umutalacam.readingapp.order.request.CreateOrderRequest;
 import org.umutalacam.readingapp.system.exception.RestException;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class OrderCollectionTest {
         // get customers
         List<Customer> customers =  customerService.getAllCustomers();
         List<Book> books = bookService.getAllBooks();
-        List<BookOrder> bookOrders = new ArrayList<>();
+        List<BookAmountPair> bookOrders = new ArrayList<>();
 
         int bookLimit = books.size();
 
@@ -49,16 +51,16 @@ public class OrderCollectionTest {
                 // pick a random book
                 int randomBookIndex = (int) (Math.random()*(bookLimit-1));
                 Book orderedBook = books.get(randomBookIndex);
-                BookOrder bookOrder = new BookOrder();
-                bookOrder.setBook(orderedBook);
+                BookAmountPair bookOrder = new BookAmountPair();
+                bookOrder.setBookId(orderedBook.getBookId());
                 bookOrder.setAmount((int) (Math.random()*3) + 1);
                 bookOrders.add(bookOrder);
             }
-            Order order = new Order();
-            order.setCustomer(c);
-            order.setItems(bookOrders);
+            CreateOrderRequest request = new CreateOrderRequest();
+            request.setItems(bookOrders);
+            request.setUsername(c.getUsername());
             try {
-                orderService.createOrder(order);
+                orderService.createOrder(request);
             } catch (RestException ex) {
                 System.err.println(ex.buildResponse());
             }

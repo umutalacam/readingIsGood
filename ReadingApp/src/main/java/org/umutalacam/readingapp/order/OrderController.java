@@ -1,9 +1,12 @@
 package org.umutalacam.readingapp.order;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.umutalacam.readingapp.order.request.CreateOrderRequest;
 import org.umutalacam.readingapp.order.request.GetOrdersRequest;
+import org.umutalacam.readingapp.order.response.OrderCreatedResponse;
 import org.umutalacam.readingapp.system.exception.RestException;
 import org.umutalacam.readingapp.system.response.PaginatedResponse;
 
@@ -48,13 +51,13 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<?> createOrder(@RequestBody Order order) throws RestException {
-        Order createdOrder = this.orderService.createOrder(order);
+    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest orderRequest) throws RestException {
+        Order createdOrder = this.orderService.createOrder(orderRequest);
         // Build response
-        HashMap<String, Object> responseBody = new HashMap<>();
-        responseBody.put("message", "Order created successfully");
-        responseBody.put("orderId", createdOrder.getOrderId());
-        return ResponseEntity.ok(responseBody);
+        OrderCreatedResponse response = new OrderCreatedResponse();
+        response.setOrderId(createdOrder.getOrderId());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/customer/orders")

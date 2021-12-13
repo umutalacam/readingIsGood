@@ -6,5 +6,5 @@ import org.umutalacam.readingapp.book.Book;
 @Data
 public class BookOrder {
     private Book book;
-    private Integer amount;
+    private int amount;
 }

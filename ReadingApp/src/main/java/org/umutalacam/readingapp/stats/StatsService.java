@@ -2,6 +2,7 @@ package org.umutalacam.readingapp.stats;
 
 import org.springframework.stereotype.Service;
 import org.umutalacam.readingapp.order.BookOrder;
+import org.umutalacam.readingapp.order.request.BookAmountPair;
 import org.umutalacam.readingapp.order.Order;
 import org.umutalacam.readingapp.order.OrderRepository;
 import org.umutalacam.readingapp.stats.response.Month;
